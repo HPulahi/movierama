@@ -32,6 +32,18 @@ module Pages
       end
     end
 
+    def notify(title)
+      within(_movie_node(title)) do
+        click_on 'Notify Me'
+      end
+    end
+
+    def unnotify(title)
+      within(_movie_node(title)) do
+        click_on 'Un-Notify Me'
+      end
+    end
+
     def sort_by(attr)
       within(page.find('.mr-sorter')) do
         click_on(attr)
