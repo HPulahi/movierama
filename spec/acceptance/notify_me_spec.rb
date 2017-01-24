@@ -46,8 +46,16 @@ RSpec.describe 'notify me', type: :feature do
         expect(page).to have_notify_message
     end
     
-    # it 'can unnotify on submitted movies'
-    
-    # it 'can not notify on unsubmitted movies'
+    it 'can unnotify' do
+      Pages::MovieNew.new.open.submit(
+        title:       'The Party',
+        date:        '1969-08-13',
+        description: 'Birdy nom nom'
+        )
+        page.open
+        page.notify('The Party')
+        page.unnotify('The Party')
+        expect(page).to have_unnotify_message
+    end
   end
 end
