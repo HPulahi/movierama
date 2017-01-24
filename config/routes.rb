@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :movies, only: %i(new create destroy) do
     resource :vote, only: %i(create destroy)
+    resource :notification, only: %i(create destroy)
   end
 
   resources :users, only: %i() do

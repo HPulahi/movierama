@@ -34,13 +34,13 @@ module Pages
 
     def notify(title)
       within(_movie_node(title)) do
-        click_on 'Notify Me'
+        click_on 'Notify'
       end
     end
 
     def unnotify(title)
       within(_movie_node(title)) do
-        click_on 'Un-Notify Me'
+        click_on 'Unnotify'
       end
     end
 
@@ -60,6 +60,14 @@ module Pages
 
     def has_unvote_message?
       page.has_content?('Vote withdrawn')
+    end
+
+    def has_notify_message?
+      page.has_content?('Notification activated')
+    end
+
+    def has_unnotify_message?
+      page.has_content?('Notification de-activated')
     end
 
     private

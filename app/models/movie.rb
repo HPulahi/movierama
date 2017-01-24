@@ -9,6 +9,8 @@ class Movie < BaseModel
 
   attribute :liker_count
   attribute :hater_count
+  
+  attribute :notify
 
   set :likers, :User
   set :haters, :User

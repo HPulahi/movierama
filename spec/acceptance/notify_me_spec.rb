@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'capybara/rails'
 require 'support/pages/movie_list'
+require 'support/pages/movie_new'
 require 'support/with_user'
 
 RSpec.describe 'notify me', type: :feature do
@@ -24,9 +25,26 @@ RSpec.describe 'notify me', type: :feature do
     it 'cannot notify' do
       page.open
       expect {
-        page.like('Batman vs Superman')
+        page.notify('Batman vs Superman')
       }.to raise_error(Capybara::ElementNotFound)
     end
   end
 
+  context 'when logged in' do
+    with_logged_in_user
+
+    before { page.open }
+
+    it 'can notify on submitted movies' do
+      Pages::MovieNew.new.open.submit(
+        title:       'The Party',
+        date:        '1969-08-13',
+        description: 'Birdy nom nom'
+        )
+      page.open
+      page.notify('The Party')
+    end
+
+    # it can not notify on submitted movies
+  end
 end

@@ -7,7 +7,11 @@ class Ability
     can :vote, Movie do |movie|
       movie.user_id != user.id
     end
-
+    
+    can :notify, Movie do |movie|
+      movie.user_id == user.id
+    end
+    
     can :create, Movie
   end
 end
