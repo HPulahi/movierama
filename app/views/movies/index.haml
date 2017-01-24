@@ -67,11 +67,12 @@
                     Hate
             - elsif current_user && can?(:notify, movie)
               .mr-movie-voting.pull-right
-                = link_to movie_notification_path(movie, t:'notify'), method: :post do
-                  Notify
-                |
-                = link_to movie_notification_path(movie, t:'unnotify'), method: :post do
-                  Unnotify
+                - if current_user.is_notified_by?(movie)
+                  = link_to movie_notification_path(movie, t:'notify'), method: :post do
+                    Notify
+                - else
+                  = link_to movie_notification_path(movie, t:'unnotify'), method: :delete do
+                    Unnotify
             .clearfix
     .col-md-3
       - if can? :create, Movie

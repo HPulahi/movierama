@@ -1,4 +1,4 @@
-# Cast or withdraw a vote on a movie
+# Notify a submitter of a new vote
 class NotifySubmitter
   def initialize(user, movie)
     @user  = user
@@ -6,10 +6,14 @@ class NotifySubmitter
   end
 
   def notify_me
-    @movie.update(notify: true)
+    @movie.update(deliver_notification: true)
   end
 
   def unnotify_me
-    @movie.update(notify: false)
+    @movie.update(deliver_notification: false)
+  end
+  
+  def send_notification_to_submitter
+    UserMailer.vote_received(@user, @movie).deliver
   end
 end

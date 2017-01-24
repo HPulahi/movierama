@@ -3,14 +3,14 @@ class NotificationsController < ApplicationController
     authorize! :notify, _movie
 
     _notifier.notify_me
-    redirect_to root_path, notice: 'You will now be notified'
+    redirect_to root_path, notice: 'Notification activated'
   end
   
   def destroy
     authorize! :notify, _movie
 
     _notifier.unnotify_me
-    redirect_to root_path, notice: 'You will no longer be notified'
+    redirect_to root_path, notice: 'Notification de-activated'
   end
 
   private

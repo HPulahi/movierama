@@ -8,5 +8,8 @@ class UserDecorator < Draper::Decorator
   def hates?(movie)
     movie.haters.include?(object)
   end
+  
+  def is_notified_by?(movie)
+    movie.deliver_notification.nil?
+  end
 end
-
