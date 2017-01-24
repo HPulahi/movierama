@@ -41,17 +41,13 @@ RSpec.describe 'notify me', type: :feature do
         date:        '1969-08-13',
         description: 'Birdy nom nom'
         )
-        
-      page.open
-      expect(page).to have_notify_message
+        page.open
+        page.notify('The Party')
+        expect(page).to have_notify_message
     end
     
     # it 'can unnotify on submitted movies'
     
     # it 'can not notify on unsubmitted movies'
-    
-    # it 'can not notify twice'
-    
-    # it 
   end
 end
